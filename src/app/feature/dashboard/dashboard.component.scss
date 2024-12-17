@@ -1,25 +1,29 @@
 .dashboard {
-    padding: 1rem;
-  
-    .dashboard-toolbar {
-      display: flex;
-      margin-bottom: 1rem;
-  
-      button {
-        margin-left: 0.5rem;
-      }
-    }
-  
-    .grid-layout {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-  
-    .list-layout {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+  padding: 1rem;
+
+  .dashboard-toolbar {
+    display: flex;
+    margin-bottom: 1rem;
+
+    button {
+      margin-left: 0.5rem;
     }
   }
-  
+
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    @media (max-width: 480px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  .list-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

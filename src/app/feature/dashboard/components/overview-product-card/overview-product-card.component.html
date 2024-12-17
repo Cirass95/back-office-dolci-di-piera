@@ -1,34 +1,34 @@
-<p-card header="Panoramica" styleClass="overview-card">
+<p-card header="Panoramica" >
     <div class="flex justify-content-between ">
-        <div>
+        <div  class="flex flex-column gap-3">
             <div class="overview-item">
                 <i class="pi pi-box text-2xl"></i>
-                <div>
-                    <p>Totale Prodotti</p>
-                    <h3>{{ totalProducts }}</h3>
+                <div class="flex flex-column gap-1">
+                    <span>Totale Prodotti</span>
+                    <span>{{ totalProducts }}</span>
                 </div>
             </div>
             <div class="overview-item">
                 <i class="pi pi-tags text-2xl"></i>
-                <div>
-                    <p>Totale Categorie</p>
-                    <h3>{{ totalCategories }}</h3>
+                <div class="flex flex-column gap-1">
+                    <span>Totale Categorie</span>
+                    <span>{{ totalCategories }}</span>
                 </div>
             </div>
         </div>
-        <div>
+        <div class="flex flex-column gap-3">
             <div class="overview-item">
                 <i class="pi pi-comments text-2xl"></i>
-                <div>
-                    <p>Totale Recensioni</p>
-                    <h3>{{ totalReviews }}</h3>
+                <div class="flex flex-column gap-1">
+                    <span>Totale Recensioni</span>
+                    <span>{{ totalReviews }}</span>
                 </div>
             </div>
             <div class="overview-item">
-                <i class="pi pi-dollar text-2xl"></i>
-                <div>
-                    <p>Prezzo Medio</p>
-                    <h3>{{ averagePrice | currency:'EUR' }}</h3>
+                <i class="pi pi-euro text-2xl"></i>
+                <div class="flex flex-column gap-1">
+                    <span>Prezzo Medio</span>
+                    <span>{{ averagePrice | currency:'EUR' }}</span>
                 </div>
             </div>
         </div>

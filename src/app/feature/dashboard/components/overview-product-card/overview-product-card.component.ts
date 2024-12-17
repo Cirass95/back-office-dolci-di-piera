@@ -15,6 +15,7 @@ export class OverviewProductCardComponent {
   totalCategories: number = 0;
   totalReviews: number = 0;
   averagePrice: number = 0;
+  
 
   ngOnInit(): void {
     this.calculateOverview();
