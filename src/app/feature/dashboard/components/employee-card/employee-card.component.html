@@ -1,0 +1,26 @@
+<p-card header="Employees" *ngIf="employees.length; else empty" class="employees-card">
+    <div *ngFor="let employee of employees" class="employee-item">
+        <div class="flex align-items-center gap-3">
+            <i class="pi pi-user text-2xl icon"></i>
+            <div class="flex flex-column">
+                <span class="employee-label">Name:</span>
+                <span class="employee-name">{{ employee }}</span>
+            </div>
+        </div>
+    </div>
+</p-card>
+
+<!-- Stato vuoto -->
+<ng-template #empty>
+    <p-card header="Employees" class="employees-card empty-state">
+        <div class="loading-item" *ngFor="let i of [1, 2, 3]">
+            <div class="flex align-items-center gap-3 mb-2">
+                <p-skeleton shape="circle" size="2.5rem" styleClass="mr-2" />
+                <div class="flex flex-column gap-1">
+                    <p-skeleton width="8rem" />
+                    <p-skeleton width="6rem" />
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>

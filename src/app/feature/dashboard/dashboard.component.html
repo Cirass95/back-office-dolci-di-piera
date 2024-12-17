@@ -1,0 +1,32 @@
+<div class="dashboard">
+    <div class="dashboard-toolbar">
+      <button
+        pButton
+        label="Grid View"
+        icon="pi pi-th-large"
+        class="p-button-text"
+        [disabled]="viewMode === VIEW_MODE.GRID"
+        (click)="toggleViewMode(VIEW_MODE.GRID)"
+      ></button>
+      <button
+        pButton
+        label="List View"
+        icon="pi pi-bars"
+        class="p-button-text"
+        [disabled]="viewMode === VIEW_MODE.LIST"
+        (click)="toggleViewMode(VIEW_MODE.LIST)"
+      ></button>
+    </div>
+  
+    <div  [ngClass]="{ 
+        'list-layout': viewMode === VIEW_MODE.LIST, 
+        'grid-layout': viewMode === VIEW_MODE.GRID 
+      }">
+      <app-employee-card [employees]="employees"></app-employee-card>
+      <app-overview-product-card *ngIf="products.length" [products]="products"></app-overview-product-card>
+
+    </div>
+  
+
+         
+  

@@ -1,0 +1,36 @@
+<p-card header="Panoramica" styleClass="overview-card">
+    <div class="flex justify-content-between ">
+        <div>
+            <div class="overview-item">
+                <i class="pi pi-box text-2xl"></i>
+                <div>
+                    <p>Totale Prodotti</p>
+                    <h3>{{ totalProducts }}</h3>
+                </div>
+            </div>
+            <div class="overview-item">
+                <i class="pi pi-tags text-2xl"></i>
+                <div>
+                    <p>Totale Categorie</p>
+                    <h3>{{ totalCategories }}</h3>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="overview-item">
+                <i class="pi pi-comments text-2xl"></i>
+                <div>
+                    <p>Totale Recensioni</p>
+                    <h3>{{ totalReviews }}</h3>
+                </div>
+            </div>
+            <div class="overview-item">
+                <i class="pi pi-dollar text-2xl"></i>
+                <div>
+                    <p>Prezzo Medio</p>
+                    <h3>{{ averagePrice | currency:'EUR' }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-card>

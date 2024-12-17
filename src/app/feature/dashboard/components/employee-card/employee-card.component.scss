@@ -1,0 +1,30 @@
+
+
+.employee-item {
+    padding: 0.5rem 0;
+
+    .icon {
+        color: #007ad9;
+    }
+
+    .employee-label {
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .employee-name {
+        font-size: 1rem;
+        color: #333;
+    }
+}
+
+.empty-state {
+    .loading-item {
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
