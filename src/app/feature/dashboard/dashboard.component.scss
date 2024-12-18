@@ -12,13 +12,21 @@
 
   .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4 ,1fr);
+    grid-template-rows: auto auto;
     gap: 1.5rem;
+
     @media (max-width: 480px) {
       .dashboard {
         grid-template-columns: 1fr;
       }
     }
+    
+    .item-4{
+      grid-column: span 2;
+    }
+
+
   }
 
   .list-layout {
@@ -27,3 +35,5 @@
     gap: 1.5rem;
   }
 }
+
+

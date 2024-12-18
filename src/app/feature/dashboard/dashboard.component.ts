@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ToggleButton } from 'primeng/togglebutton';
 import { InfoCardComponent } from "./components/info-card/info-card.component";
 import { Product } from '../../shared/interface/product.interface';
+import { PolarChartComponent } from "./components/chart/polar-chart.component";
+import { CategoryInterface } from '../../shared/interface/category.interface';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ToggleButton, InfoCardComponent],
+  imports: [CommonModule, ToggleButton, InfoCardComponent, PolarChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -22,10 +24,13 @@ export class DashboardComponent implements OnInit {
   totalReviews = 0;
   totalProducts = 0;
   totalCategories = 0;
+  totalEmployees = 0;
+  categories: CategoryInterface[] = [];
 
   ngOnInit(): void {
     this.getStoreInformation();
     this.getProducts();
+    this.getCategories();
   }
 
 
@@ -44,11 +49,20 @@ export class DashboardComponent implements OnInit {
         this.totalReviews = this.storeService.getTotalReviews(this.products);
         this.totalProducts = this.storeService.getTotalProducts(this.products);
         this.totalCategories = this.storeService.getTotalCategories(this.products);
+        this.totalEmployees = this.storeService.getTotalEmployees(this.products);
       }
     });
   }
   toggleViewMode(): void {
     this.gridLayout = !this.gridLayout;
+  }
+
+  getCategories() {
+    this.storeService.getCategories().subscribe(
+      {
+        next: (categories) => this.categories = categories
+      }
+    )
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="dashboard">
-  <div class="dashboard-toolbar">
+  <div class="dashboard-toolbar hidden md:block mb-3" >
     <p-togglebutton onLabel="GridView" offLabel="ListView" onIcon=" pi-moon" [onIcon]="'pi  pi-objects-column'"
       offIcon="pi pi-list" styleClass="w-36" (click)="toggleViewMode()" />
   </div>
@@ -8,5 +8,11 @@
     <app-info-card [label]="'Products on Stock'" [value]="totalProducts"></app-info-card>
     <app-info-card [label]="'Categories Created'" [value]="totalCategories"></app-info-card>
     <app-info-card [label]="'Reviews Received'" [value]="totalReviews"></app-info-card>
-
+    <app-info-card [label]="'Employees'" [value]="totalEmployees"></app-info-card>
+    <app-polar-chart class="item-4" *ngIf="categories.length" [categories]="categories"></app-polar-chart>
+    <app-polar-chart class="item-4" *ngIf="categories.length" [categories]="categories"></app-polar-chart>
   </div>
+
+
+  
+  

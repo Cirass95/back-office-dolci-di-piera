@@ -4,8 +4,10 @@ export interface Product {
 }
 
 export interface ProductData{
-    name: string;
+    description: string;
+    title: string;
     category: string;
     price: number;
     reviews: string[];
+    employee: string;
 }

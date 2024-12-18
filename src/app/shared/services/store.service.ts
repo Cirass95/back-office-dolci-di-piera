@@ -30,8 +30,15 @@ export class StoreService {
     return products.reduce((acc, product) => acc + (product.data.reviews?.length || 0), 0);
   }
 
+  getTotalEmployees(products: Product[]): number {
+    const employ = products.map(product => product.data.employee);
+    return new Set(employ).size;
+  }
+
   getTotalCategories(products: Product[]): number {
     const categories = products.map(product => product.data.category);
     return new Set(categories).size;
   }
+
+
 }
