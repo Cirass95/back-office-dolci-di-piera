@@ -1,3 +1,7 @@
+export interface ProductList{
+    list: Product[];
+    length: number;
+}
 export interface Product {
     id: string;
     data: ProductData;

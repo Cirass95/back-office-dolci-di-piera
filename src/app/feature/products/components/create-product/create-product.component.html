@@ -1,0 +1,47 @@
+<div class="card flex flex-column gap-3  p-2" [formGroup]="productForm">
+
+    <p-floatlabel variant="on">
+        <input pInputText autocomplete="off" class="w-full" formControlName="title" />
+        <label>Nome</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <textarea rows="5" cols="30" class="w-full" pTextarea formControlName="description"></textarea>
+        <label>Descrizione</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <p-inputnumber formControlName="price" class="w-full" mode="currency"  currency="EUR" locale="it-IT" />
+        <label>Prezzo</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <p-select [options]="categories" appendTo="body" [inputId]="'id1' " formControlName="category" optionLabel="category"
+            class="w-full"></p-select>
+        <label for="id1">Categoria</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <input pInputText autocomplete="off" class="w-full" formControlName="employee" />
+        <label>Dipendente</label>
+    </p-floatlabel>
+
+    <div *ngFor="let alias of reviews.controls; let i=index;let last = last" class="flex  align-items-center gap-3 "
+        formArrayName="reviews">
+        <p-floatlabel variant="on" class="flex-grow-1">
+            <input class="w-full" pInputText autocomplete="off" [formControlName]="i" />
+            <label>Recensioni</label>
+        </p-floatlabel>
+        <button *ngIf="reviews.controls.length>1" pButton type="button" icon="pi pi-trash"
+            class="p-button-rounded p-button-danger" (click)="removeReview(i)"></button>
+        <button *ngIf="last" pButton type="button" icon="pi pi-plus" class="p-button-rounded p-button-success"
+            (click)="addReview()"></button>
+    </div>
+
+
+    <div class="flex justify-content-end gap-3 ">
+        <button pButton type="button" label="Annulla" class="p-button-secondary" (click)="closeModal()"></button>
+        <button pButton type="button" label="Crea" class="p-button-success"></button>
+    </div>
+
+</div>

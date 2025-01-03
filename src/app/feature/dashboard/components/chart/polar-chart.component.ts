@@ -1,23 +1,36 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, input, Input, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { CategoryInterface } from '../../../../shared/interface/category.interface';
+import { Category } from '../../../../shared/interface/category.interface';
 import { Card } from 'primeng/card';
+import { ConfigService } from '../../../../shared/services/config.service';
+import { effect } from '@angular/core';
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-polar-chart',
   standalone: true,
-  imports: [CommonModule, ChartModule,Card],
+  imports: [CommonModule, ChartModule, Card],
   providers: [TitleCasePipe],
   templateUrl: './polar-chart.component.html',
   styleUrl: './polar-chart.component.scss'
 })
-export class PolarChartComponent implements OnInit {
-  @Input() categories: CategoryInterface[] = []
-  data: any;
-  options: any;
+export class PolarChartComponent {
 
+  categories = input<Category[]>([]);
   private titleCasePipe = inject(TitleCasePipe);
+  private configService = inject(ConfigService);
+
+  darkMode = computed(() => this.configService.darkMode());
+  chartData = computed(() => this.setChartData());
+  chartOptions = computed(() => this.setChartOptions());
+
+  x = effect(() => {
+    const gridMode = this.configService.gridMode();
+    this.chartData = computed(() => this.setChartData());
+    this.chartOptions = computed(() => this.setChartOptions());
+  });
+
   generateColors(count: number): string[] {
     const colors = [];
     for (let i = 0; i < count; i++) {
@@ -26,52 +39,51 @@ export class PolarChartComponent implements OnInit {
     return colors;
   }
 
-  ngOnInit(): void {
-    const colors = this.generateColors(this.categories.length);
-
-    this.data = {
-      labels: this.categories.map(value => this.titleCasePipe.transform(value.category)),
+  setChartData() {
+    const colors = this.generateColors(this.categories().length);
+    return {
+      labels: this.categories().map(value => this.titleCasePipe.transform(value.category)),
       datasets: [
         {
           label: 'Numero di Prodotti',
-          data: this.categories.map(value => value.numberOfProducts),
+          data: this.categories().map(value => value.numberOfProducts),
           backgroundColor: colors,
         }
       ]
     };
-    this.options = {
+  }
+
+  setChartOptions(): ChartOptions<'polarArea'> {
+    return {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
+
       plugins: {
         legend: {
-          position: 'top',
+          display: true,
+          position: 'left',
           labels: {
-            color: '#495057', // Colore della legenda
-            font: {
-              size: 14,
-            },
+            color: this.darkMode() ? '#FFF' : '#000',
           },
         },
       },
       scales: {
         r: {
           ticks: {
-            display: true, // Mostra i valori sulle scale
-            color: '#495057', // Colore delle etichette
-            font: {
-              size: 12,
-            },
+            display: false,
           },
           grid: {
-            color: '#E0E0E0', // Colore della griglia
+            display: false,
           },
-          angleLines: {
-            color: '#E0E0E0', // Linee radiali
+          pointLabels: {
+            display: false,
           },
         },
       },
     };
   }
+
+
 }
 
 

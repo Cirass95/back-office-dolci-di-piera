@@ -4,15 +4,11 @@
       offIcon="pi pi-list" styleClass="w-36" (click)="toggleViewMode()" />
   </div>
 
-  <div [ngClass]="{ 'grid-layout': gridLayout, 'list-layout': !gridLayout }">
+  <div [ngClass]="{ 'grid-layout': gridLayout(), 'list-layout': !gridLayout() }">
     <app-info-card [label]="'Products on Stock'" [value]="totalProducts"></app-info-card>
     <app-info-card [label]="'Categories Created'" [value]="totalCategories"></app-info-card>
     <app-info-card [label]="'Reviews Received'" [value]="totalReviews"></app-info-card>
     <app-info-card [label]="'Employees'" [value]="totalEmployees"></app-info-card>
-    <app-polar-chart class="item-4" *ngIf="categories.length" [categories]="categories"></app-polar-chart>
-    <app-polar-chart class="item-4" *ngIf="categories.length" [categories]="categories"></app-polar-chart>
+    <app-polar-chart class="item-4"  [categories]="categories"></app-polar-chart>
+    <app-polar-chart class="item-4"  [categories]="categories"></app-polar-chart>
   </div>
-
-
-  
-  

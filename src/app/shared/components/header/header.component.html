@@ -1,20 +1,20 @@
 <p-menubar class="header" [model]="menuItems">
-  <ng-template  #item let-item>
-    <ng-container >
-        <a [routerLink]="item.routerLink" class="p-menubar-item-link">
-            <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
-        </a>
+  <ng-template #item let-item>
+    <ng-container>
+      <a [routerLink]="item.routerLink" class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
     </ng-container>
   </ng-template>
-   <ng-template #start>
+  <ng-template #start>
     <div class="logo sm-hidden">
       <span class="shop-name hidden md:block"> Dolci di Piera</span>
       <span class="shop-name md:hidden">DP</span>
     </div>
   </ng-template>
   <ng-template #end>
-    <p-togglebutton [(ngModel)]="darkMode" onLabel="" offLabel="" onIcon=" pi-moon" [onIcon]="'pi pi-moon'"
-      offIcon="pi pi-sun" styleClass="w-36" (click)="toggleDarkMode()" />
+    <p-togglebutton onLabel="" offLabel="" [onIcon]="'pi pi-sun'" [offIcon]="'pi pi-moon'" styleClass="w-36"
+      (click)="toggleDarkMode()" />
   </ng-template>
 </p-menubar>

@@ -1,1 +1,64 @@
-<p>products works!</p>
+<div class="card">
+    <!-- title -->
+    <h1 class="p-text-center">Prodotti</h1>
+
+    <!-- create new product -->
+    <div class="mb-5 flex justify-content-end">
+        <button pButton type="button" label="Crea nuovo prodotto" class="p-button-rounded"
+            (click)="createProduct()"></button>
+    </div>
+
+
+    <p-table [value]="products" [loading]="loading" [showLoader]="false" [tableStyle]="{ 'min-width': '60rem' }"
+        (onPageChange)="onPageChange($event)">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Reviews</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.data.title }}</td>
+                <td>
+                    <p>{{ product.data.description }}</p>
+                </td>
+                <td>{{ product.data.price | currency: 'EUR' }}</td>
+                <td>{{ product.data.category | titlecase}}</td>
+                <td>
+                    <div *ngFor="let item of product.data.reviews">
+                        <ul>
+                            <li>{{ item }}</li>
+                        </ul>
+                    </div>
+                    <ul *ngIf="!product.data.reviews.length">
+                        <li>Non ci sono recensioni</li>
+                    </ul>
+                </td>
+                <td>
+                    <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="deleteProduct($event,product.id)">
+                    </button>
+                </td>
+
+            </tr>
+        </ng-template>
+        <ng-template #loadingbody>
+            <tr *ngFor="let col of [1,2,3,4,5];">
+
+                <td *ngFor="let col of [1,2,3,4,5,6];let last = last">
+                    <p-skeleton *ngIf="last" shape="circle" size="3rem" styleClass="mr-2" />
+                    <p-skeleton *ngIf="!last" width="100%" borderRadius="16px" />
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="1" [rows]="elementForPage"
+        [totalRecords]="totalProducts" [showCurrentPageReport]="false" [showPageLinks]="false"
+        [showJumpToPageDropdown]="false" [showFirstLastIcon]="true" />
+</div>

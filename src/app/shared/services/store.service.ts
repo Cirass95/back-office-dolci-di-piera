@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { StoreInterface } from '../interface/store.interface';
-import { ProductData, Product } from '../interface/product.interface';
-import { CategoryInterface } from '../interface/category.interface';
+import { Product, } from '../interface/product.interface';
+import { Category } from '../interface/category.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
+
+
+
   private http = inject(HttpClient);
 
   getStoreInformation(): Observable<StoreInterface> {
@@ -19,8 +22,8 @@ export class StoreService {
     return this.http.get<Product[]>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/products`);
   }
 
-  getCategories(): Observable<CategoryInterface[]> {
-    return this.http.get<CategoryInterface[]>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/stats/categories`);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/stats/categories`);
   }
 
   getTotalProducts(products: Product[]): number {

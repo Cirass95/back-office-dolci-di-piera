@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { Card } from 'primeng/card';
 
 @Component({
@@ -9,7 +9,7 @@ import { Card } from 'primeng/card';
   styleUrl: './info-card.component.scss'
 })
 export class InfoCardComponent {
-  @Input() value: number = 0
-  @Input() label: string = ''
 
+  value = input<number>(0);
+  label = input<string>('');
 }
