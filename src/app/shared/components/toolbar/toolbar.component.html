@@ -1,0 +1,17 @@
+<p-toolbar>
+    <ng-template #start>
+        <p-button label="Crea nuovo prodotto" icon="pi pi-plus" class="mr-2" text severity="secondary"  (click)="addProduct()"/>  
+        <p-togglebutton class="hidden md:block" onLabel="GridView" offLabel="ListView" onIcon=" pi-moon" [onIcon]="'pi  pi-objects-column'"
+        offIcon="pi pi-list" styleClass="w-36" (click)="toggleViewMode()" />
+    </ng-template>
+
+    <ng-template #end>
+        <p-iconfield>
+            <input type="text" pInputText placeholder="Search"  [(ngModel)]="searchTerm" (input)="search()"/>
+            <p-inputicon styleClass="pi pi-search"  *ngIf="!searchTerm.length"/>
+            <p-inputicon styleClass="pi pi-times" (click)="clearSearch()" *ngIf="searchTerm.length"/>
+            
+        </p-iconfield>
+    </ng-template>
+</p-toolbar>
+

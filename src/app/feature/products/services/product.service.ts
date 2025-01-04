@@ -19,7 +19,9 @@ export class ProductService {
     return this.http.delete<void>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/products/${id}`);
   }
 
-  createProduct(product: ProductData): Observable<any> {
-    return this.http.post<any>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/products`, product);
+  createProduct(product: ProductData): Observable<string> {
+    return this.http.post<string>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/products`, product, {
+      responseType: 'text' as 'json',
+    });
   }
 }

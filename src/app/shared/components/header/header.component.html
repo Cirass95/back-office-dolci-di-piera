@@ -1,16 +1,15 @@
 <p-menubar class="header" [model]="menuItems">
   <ng-template #item let-item>
     <ng-container>
-      <a [routerLink]="item.routerLink" class="p-menubar-item-link">
+      <a [routerLink]="item.routerLink" class="p-menubar-item-link {{item.styleClass}}" >
         <span [class]="item.icon"></span>
         <span class="ml-2">{{ item.label }}</span>
       </a>
     </ng-container>
   </ng-template>
   <ng-template #start>
-    <div class="logo sm-hidden">
-      <span class="shop-name hidden md:block"> Dolci di Piera</span>
-      <span class="shop-name md:hidden">DP</span>
+    <div class="cursor-pointer" [routerLink]="['/']"> 
+      <span class="logo shop-name hidden md:block"> {{storeName}}</span>
     </div>
   </ng-template>
   <ng-template #end>
@@ -18,3 +17,6 @@
       (click)="toggleDarkMode()" />
   </ng-template>
 </p-menubar>
+<div class="cursor-pointer mt-3" [routerLink]="['/']">
+  <span class="logo shop-name block md:hidden text-center" > {{storeName}}</span>
+</div>

@@ -9,7 +9,7 @@ import { Skeleton } from 'primeng/skeleton';
 import { finalize } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { CreateProductComponent } from './components/create-product/create-product.component';
+import { CreateProductComponent } from '../../shared/components/create-product/create-product.component';
 import { StoreService } from '../../shared/services/store.service';
 import { Category } from '../../shared/interface/category.interface';
 
@@ -40,11 +40,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductList();
-    this.storeService.getCategories().subscribe({
-      next: (response) => {
-        this.categories = response;
-      }
-    })
   }
 
   getProductList() {
@@ -56,7 +51,6 @@ export class ProductsComponent implements OnInit {
       next: (response) => {
         this.products = response.list;
         this.totalProducts = response.length;
-        console.log(this.totalProducts)
       }
     });
   }
@@ -67,7 +61,6 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(event: Event, product: string) {
-    console.log(product)
     this.confirmationService.confirm({
       message: 'Sei sicuro di voler eliminare il prodotto?',
       header: 'Elimina Prodotto',

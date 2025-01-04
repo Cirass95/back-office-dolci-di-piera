@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Menubar } from 'primeng/menubar';
 import { ToggleButton } from 'primeng/togglebutton';
-import { StoreService } from '../../services/store.service';
 import { ConfigService } from '../../services/config.service';
 
 @Component({
@@ -17,11 +16,14 @@ import { ConfigService } from '../../services/config.service';
 })
 export class HeaderComponent {
   private configService = inject(ConfigService);
+  @Input() storeName!: string;
   darkMode = computed(() => this.configService.darkMode);
 
+
   menuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-home', routerLink: '/dashboard' },
+    { label: 'Dashboard', icon: 'pi pi-home', routerLink: '/' },
     { label: 'Prodotti', icon: 'pi pi-list', routerLink: '/products' },
+    { label: 'Statistiche', icon: 'pi pi-chart-bar', routerLink: '/stats' }
   ];
 
   toggleDarkMode() {

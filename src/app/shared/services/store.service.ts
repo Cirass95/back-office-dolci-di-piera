@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { StoreInterface } from '../interface/store.interface';
 import { Product, } from '../interface/product.interface';
 import { Category } from '../interface/category.interface';
@@ -10,8 +10,6 @@ import { Category } from '../interface/category.interface';
   providedIn: 'root'
 })
 export class StoreService {
-
-
 
   private http = inject(HttpClient);
 
@@ -25,23 +23,5 @@ export class StoreService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${environment.BASE_URL}/stores/${environment.STORE_ID}/stats/categories`);
   }
-
-  getTotalProducts(products: Product[]): number {
-    return products.length;
-  }
-  getTotalReviews(products: Product[]): number {
-    return products.reduce((acc, product) => acc + (product.data.reviews?.length || 0), 0);
-  }
-
-  getTotalEmployees(products: Product[]): number {
-    const employ = products.map(product => product.data.employee);
-    return new Set(employ).size;
-  }
-
-  getTotalCategories(products: Product[]): number {
-    const categories = products.map(product => product.data.category);
-    return new Set(categories).size;
-  }
-
 
 }

@@ -1,14 +1,16 @@
 <div class="dashboard">
-  <div class="dashboard-toolbar hidden md:block mb-3" >
-    <p-togglebutton onLabel="GridView" offLabel="ListView" onIcon=" pi-moon" [onIcon]="'pi  pi-objects-column'"
-      offIcon="pi pi-list" styleClass="w-36" (click)="toggleViewMode()" />
+  <h2>I nostri prodotti</h2>
+
+  <app-toolbar (changeViewMode)="toggleViewMode()" (createProduct)="createProduct()"
+    (searchProduct)="searchProduct($event)" />
+    
+  <div [ngClass]="{ 'grid-layout': gridLayout(), 'list-layout': !gridLayout() }" class="mt-4">
+    <ng-container *ngIf="serchedList.length;else empty">
+      <app-product-card *ngFor="let product of serchedList" [product]="product"
+        (deleteProduct)="deleteProduct($event)" />
+    </ng-container>
   </div>
 
-  <div [ngClass]="{ 'grid-layout': gridLayout(), 'list-layout': !gridLayout() }">
-    <app-info-card [label]="'Products on Stock'" [value]="totalProducts"></app-info-card>
-    <app-info-card [label]="'Categories Created'" [value]="totalCategories"></app-info-card>
-    <app-info-card [label]="'Reviews Received'" [value]="totalReviews"></app-info-card>
-    <app-info-card [label]="'Employees'" [value]="totalEmployees"></app-info-card>
-    <app-polar-chart class="item-4"  [categories]="categories"></app-polar-chart>
-    <app-polar-chart class="item-4"  [categories]="categories"></app-polar-chart>
-  </div>
+  <ng-template #empty>
+    <p>Nessun prodotto trovato</p>
+  </ng-template>

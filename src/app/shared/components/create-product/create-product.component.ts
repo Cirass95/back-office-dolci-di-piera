@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Category } from '../../../../shared/interface/category.interface';
+import { Category } from '../../interface/category.interface';
 import { Select } from 'primeng/select';
 import { InputNumberModule } from 'primeng/inputnumber';
-
 @Component({
   selector: 'app-create-product',
   standalone: true,
@@ -30,17 +28,17 @@ export class CreateProductComponent implements OnInit {
 
   constructor() {
     this.productForm = this.fb.group({
-      title: ['',],
-      description: [''],
-      category: [null],
-      reviews: this.fb.array([this.fb.control('')]),
-      price: [''],
-      employee: [''],
+      title: ['',Validators.required],
+      description: ['',Validators.required],
+      category: [null,Validators.required],
+      reviews: this.fb.array([]),
+      price: ['',Validators.required],
+      employee: ['',Validators.required],
 
     });
   }
   ngOnInit(): void {
-    this.categories = this.dialogConfig.data;
+    this.categories = this.dialogConfig.data.map((category: Category) => category.category);
   }
 
   get reviews() {
@@ -48,8 +46,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   addReview() {
-    this.reviews.push(this.fb.control(''));
-    console.log(this.reviews);
+    this.reviews.push(this.fb.control(null));
   }
 
   removeReview(index: number) {
