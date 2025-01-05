@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { PolarChartComponent } from './components/chart/polar-chart.component';
 import { ActivatedRoute } from '@angular/router';
-import { InfoCardComponent } from '../dashboard/info-card/info-card.component';
+import { InfoCardComponent } from '../../shared/components/info-card/info-card.component';
 import { Category } from '../../shared/interface/category.interface';
 
 @Component({

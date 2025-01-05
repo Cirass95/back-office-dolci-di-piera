@@ -14,7 +14,7 @@
         <ul *ngFor="let review of product().data.reviews">
             <li class="font-semibold">{{review}}</li>
         </ul>
-        <p-divider />
+        <p-divider  *ngIf="product().data.reviews.length"/>
 
         <p>
             Realizzato da <span class="font-semibold">{{product().data.employee}}</span>

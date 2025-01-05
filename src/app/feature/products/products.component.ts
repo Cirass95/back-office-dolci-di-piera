@@ -40,6 +40,11 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductList();
+    this.storeService.getCategories().subscribe({
+      next: (response) => {
+        this.categories = response;
+      }
+    })
   }
 
   getProductList() {
@@ -51,6 +56,7 @@ export class ProductsComponent implements OnInit {
       next: (response) => {
         this.products = response.list;
         this.totalProducts = response.length;
+        console.log(this.totalProducts)
       }
     });
   }

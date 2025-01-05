@@ -2,7 +2,7 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { StoreService } from '../../shared/services/store.service';
 import { StoreInterface } from '../../shared/interface/store.interface';
 import { CommonModule } from '@angular/common';
-import { InfoCardComponent } from "./info-card/info-card.component";
+import { InfoCardComponent } from "../../shared/components/info-card/info-card.component";
 import { Product, ProductData } from '../../shared/interface/product.interface';
 import { Category } from '../../shared/interface/category.interface';
 import { PolarChartComponent } from "../statistics/components/chart/polar-chart.component";
@@ -17,7 +17,7 @@ import { CreateProductComponent } from '../../shared/components/create-product/c
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ProductCardComponent],
+  imports: [CommonModule, ToolbarComponent, ProductCardComponent,InfoCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.getCategories();
   }
 
   getProducts() {
@@ -60,6 +61,13 @@ export class DashboardComponent implements OnInit {
     this.configService.gridMode.update((currentValue) => !currentValue);
   }
 
+  getCategories() {
+    this.storeService.getCategories().subscribe(
+      {
+        next: (categories) => this.categories = categories
+      }
+    )
+  }
 
   deleteProduct(product: string) {
     this.confirmationService.confirm({

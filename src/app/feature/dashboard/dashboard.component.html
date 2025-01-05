@@ -1,9 +1,12 @@
 <div class="dashboard">
   <h2>I nostri prodotti</h2>
-
   <app-toolbar (changeViewMode)="toggleViewMode()" (createProduct)="createProduct()"
     (searchProduct)="searchProduct($event)" />
-    
+    <div class="mt-4">
+      <app-info-card [label]="'Prodotti presenti'" [value]="products.length" />
+
+    </div>
+
   <div [ngClass]="{ 'grid-layout': gridLayout(), 'list-layout': !gridLayout() }" class="mt-4">
     <ng-container *ngIf="serchedList.length;else empty">
       <app-product-card *ngFor="let product of serchedList" [product]="product"
