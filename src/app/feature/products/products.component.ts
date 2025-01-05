@@ -56,7 +56,6 @@ export class ProductsComponent implements OnInit {
       next: (response) => {
         this.products = response.list;
         this.totalProducts = response.length;
-        console.log(this.totalProducts)
       }
     });
   }

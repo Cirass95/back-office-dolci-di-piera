@@ -25,7 +25,7 @@ export class PolarChartComponent {
   chartData = computed(() => this.setChartData());
   chartOptions = computed(() => this.setChartOptions());
   isMobile = computed(() => this.configService.isMobile());
-  
+
 
   x = effect(() => {
     this.chartData = computed(() => this.setChartData());

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { InfoCardComponent } from "../../shared/components/info-card/info-card.component";
 import { Product, ProductData } from '../../shared/interface/product.interface';
 import { Category } from '../../shared/interface/category.interface';
-import { PolarChartComponent } from "../statistics/components/chart/polar-chart.component";
 import { ConfigService } from '../../shared/services/config.service';
 import { ToolbarComponent } from "../../shared/components/toolbar/toolbar.component";
 import { ProductCardComponent } from './components/product-card/product-card.component';
