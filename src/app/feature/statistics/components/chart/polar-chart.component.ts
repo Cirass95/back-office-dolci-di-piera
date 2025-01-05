@@ -24,9 +24,10 @@ export class PolarChartComponent {
   darkMode = computed(() => this.configService.darkMode());
   chartData = computed(() => this.setChartData());
   chartOptions = computed(() => this.setChartOptions());
+  isMobile = computed(() => this.configService.isMobile());
+  
 
   x = effect(() => {
-    const gridMode = this.configService.gridMode();
     this.chartData = computed(() => this.setChartData());
     this.chartOptions = computed(() => this.setChartOptions());
   });
@@ -61,7 +62,7 @@ export class PolarChartComponent {
       plugins: {
         legend: {
           display: true,
-          position: 'left',
+          position: this.isMobile() ? 'bottom' : 'left',
           labels: {
             color: this.darkMode() ? '#FFF' : '#000',
           },
